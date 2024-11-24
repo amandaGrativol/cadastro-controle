@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controle de Pacientes - Hospital</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
+
+        .container {
+            width: 80%;
+            margin: 20px auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+
+        input[type="text"], input[type="number"], input[type="date"] {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Controle de Pacientes - Hospital</h1>
+</header>
+
+<div class="container">
+    <h2>Registrar Novo Paciente</h2>
+    <form id="form-paciente">
+        <label for="nome">Nome</label>
+        <input type="text" id="nome" required>
+
+        <label for="idade">Idade</label>
+        <input type="number" id="idade" required>
+
+        <label for="dataAdmissao">Data de Admissão</label>
+        <input type="date" id="dataAdmissao" required>
+
+        <label for="sintomas">Tipo de Atendimento</label>
+        <input type="text" id="sintomas" required>
+
+        <button type="submit">Adicionar Paciente</button>
+    </form>
+
+    <h2>Pacientes Cadastrados</h2>
+    <table id="tabela-pacientes">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Idade</th>
+                <th>Data de Admissão</th>
+                <th>Tipo de atendimento</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+        </tbody>
+    </table>
+</div>
+
+<script>
+    // Função para adicionar paciente à tabela
+    document.getElementById('form-paciente').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        let nome = document.getElementById('nome').value;
+        let idade = document.getElementById('idade').value;
+        let dataAdmissao = document.getElementById('dataAdmissao').value;
+        let sintomas = document.getElementById('sintomas').value;
+
+        let tabela = document.getElementById('tabela-pacientes').getElementsByTagName('tbody')[0];
+        let novaLinha = tabela.insertRow();
+
+        novaLinha.innerHTML = `
+            <td>${nome}</td>
+            <td>${idade}</td>
+            <td>${dataAdmissao}</td>
+            <td>${sintomas}</td>
+        `;
+
+        // Limpar o formulário
+        document.getElementById('form-paciente').reset();
+    });
+</script>
+
+</body>
+</html>
